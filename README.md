@@ -2,6 +2,11 @@
 
 [Datahike](https://github.com/replikativ/datahike) with [Firebase](https://firebase.google.com/products/realtime-database) as data storage.
 
+## Status
+![master](https://github.com/alekcz/datahike-firebase/workflows/master/badge.svg)
+
+_Pre-alpha_
+
 ## Prerequisites
 
 For datahike-firebase you will need to create a Realtime Database on Firebase and store the service account credentials in the an environment variable.
@@ -9,6 +14,8 @@ For datahike-firebase you will need to create a Realtime Database on Firebase an
 ## Usage
 
 [![Clojars Project](https://img.shields.io/clojars/v/alekcz/datahike-firebase.svg)](https://clojars.org/alekcz/datahike-firebase)
+
+`[alekcz/datahike-firebase "0.1.2-SNAPSHOT"]`
 
 After including the datahike API and the datahike-firebase namespace, you can use the Firebase backend now using the keyword `:fire`
 
