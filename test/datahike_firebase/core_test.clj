@@ -2,12 +2,11 @@
   (:require [clojure.test :as t :refer [is are deftest testing]]
             [datahike.api :as d]
             [datahike-firebase.core]
-            ;[datahike-postgres.core]
-            [malli.generator :as mg]))
+            [malli.generator :as mg]
+            [superv.async :refer [<?? S]]))
 
 (def home
   [:map
-    [:db/id [:and int? [:> 10]]]
     [:name string?]
     [:description string?]
     [:rooms pos-int?]
@@ -22,7 +21,9 @@
 
 (defn random-homes [n] 
   (for [r (range n)]
-    (mg/generate home {:size (+ r 11) :seed r})))
+    (-> (mg/generate home {:size (+ (mod r 10) 11) :seed r}) 
+        (assoc :num (inc r))
+        (assoc :db/id (inc r)))))
 
 (deftest test-firebase-store
   (let [config {:backend :fire 
@@ -33,16 +34,16 @@
     (is (not (d/database-exists? config)))
     (let [_ (d/create-database config :schema-on-read true)
           conn (d/connect config)
-          homes (random-homes 10)]
+          homes (random-homes 1000)]
       
-      (time (d/transact conn (into [] homes)))
+
+      (d/transact conn (into [] homes))
       
-      (is (= (set (for [h (filter #(pos? (:rooms %)) homes)] 
-                [(:name h) (:rooms h)]))  
-          (d/q '[:find  ?n ?r
-                  :where  [?e :name ?n]
-                          [?e :rooms ?r]
-                          [(pos? ?r)]] @conn)))
+      (let [query (into [] (d/q '[:find ?id :where [_ :num ?id]] @conn))
+            query2 (into [] (d/q '[:find ?n  :where [_ :name ?n]] @conn))]
+        (is (= (count homes) (count query)))
+        (is (= (-> (map :num homes) flatten sort) (-> query flatten sort)))
+        (is (= (-> (map :name homes) flatten distinct sort) (-> query2 flatten distinct sort))))
 
       (d/release conn)
       (is (d/database-exists? config))
