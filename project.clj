@@ -8,4 +8,5 @@
                   [io.replikativ/datahike "0.2.1"]
                   [io.replikativ/datahike-postgres "0.1.0"]]
   :repl-options {:init-ns datahike-firebase.core}
-  :profiles { :dev {:dependencies [ [metosin/malli "0.0.1-SNAPSHOT"]]}})
+  :plugins [[lein-cloverage "1.1.2"]]
+  :profiles { :dev {:dependencies [[metosin/malli "0.0.1-SNAPSHOT"]]}})
