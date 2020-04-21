@@ -5,5 +5,7 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [ [org.clojure/clojure "1.10.0"]
                   [alekcz/konserve-fire "0.0.9-SNAPSHOT"]
-                  [io.replikativ/datahike "0.2.1"]]
-  :repl-options {:init-ns datahike-firebase.core})
+                  [io.replikativ/datahike "0.2.1"]
+                  [io.replikativ/datahike-postgres "0.1.0"]]
+  :repl-options {:init-ns datahike-firebase.core}
+  :profiles { :dev {:dependencies [[metosin/malli "0.0.1-SNAPSHOT"]]}})

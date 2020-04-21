@@ -7,14 +7,14 @@
 
 (defmethod empty-store :fire [config]
   (kons/add-hitchhiker-tree-handlers
-   (<?? S (fire/new-fire-store "alekcz-dev" :env :fire :root "/datahike"))))
+   (<?? S (fire/new-fire-store (:db config) :env (:env config) :root (:root config)))))
 
 (defmethod delete-store :fire [config]
-  (let [store (<?? S (fire/new-fire-store "alekcz-dev" :env :fire :root "/datahike"))]
+  (let [store (<?? S (fire/new-fire-store (:db config) :env (:env config) :root (:root config)))]
     (fire/delete-store store)))
 
 (defmethod connect-store :fire [config]
-  (<?? S (fire/new-fire-store "alekcz-dev" :env :fire :root "/datahike")))
+  (<?? S (fire/new-fire-store (:db config) :env (:env config) :root (:root config))))
 
 (defmethod scheme->index :fire [_]
   :datahike.index/hitchhiker-tree)
