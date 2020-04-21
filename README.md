@@ -4,9 +4,11 @@
 
 ## Prerequisites
 
-For datahike-firebase you will need to know the configuration of a running Postgres server as well as the name of an existing Postgres user.
+For datahike-firebase you will need to create a Realtime Database on Firebase and store the service account credentials in the an environment variable.
 
 ## Usage
+
+[![Clojars Project](https://img.shields.io/clojars/v/alekcz/datahike-firebase.svg)](https://clojars.org/alekcz/datahike-firebase)
 
 After including the datahike API and the datahike-firebase namespace, you can use the Firebase backend now using the keyword `:fire`
 
@@ -15,12 +17,12 @@ After including the datahike API and the datahike-firebase namespace, you can us
   (:require [datahike.api :as d]
             [datahike-firebase.core]))
 
-;; Create a config map with postgres as storage medium
+;; Create a config map with firebase as storage medium
 (def config 
       {:backend :fire  
-      :env "GOOGLE_APPLICATION_CREDENTIALS" ;environment variable with services account details 
-      :db "alekcz-dev" 
-      :root "/datahike-firebase"})
+       :env "GOOGLE_APPLICATION_CREDENTIALS" ;environment variable with services account details 
+       :db "db-name" 
+       :root "/datahike-firebase"})
 
 ;; Create a database at this place, by default configuration we have a strict
 ;; schema and temporal index
