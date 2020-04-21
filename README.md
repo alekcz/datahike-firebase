@@ -1,14 +1,62 @@
 # datahike-firebase
 
-A Clojure library designed to ... well, that part is up to you.
+[Datahike](https://github.com/replikativ/datahike) with [Firebase](https://firebase.google.com/products/realtime-database) as data storage.
+
+## Prerequisites
+
+For datahike-firebase you will need to know the configuration of a running Postgres server as well as the name of an existing Postgres user.
 
 ## Usage
 
-FIXME
+After including the datahike API and the datahike-firebase namespace, you can use the Firebase backend now using the keyword `:fire`
+
+```clojure
+(ns project.core
+  (:require [datahike.api :as d]
+            [datahike-firebase.core]))
+
+;; Create a config map with postgres as storage medium
+(def config 
+      {:backend :fire  
+      :env "GOOGLE_APPLICATION_CREDENTIALS" ;environment variable with services account details 
+      :db "alekcz-dev" 
+      :root "/datahike-firebase"})
+
+;; Create a database at this place, by default configuration we have a strict
+;; schema and temporal index
+(d/create-database config)
+
+(def conn (d/connect config))
+
+;; The first transaction will be the schema we are using:
+(d/transact conn [{:db/ident :name
+                   :db/valueType :db.type/string
+                   :db/cardinality :db.cardinality/one }
+                  {:db/ident :age
+                   :db/valueType :db.type/long
+                   :db/cardinality :db.cardinality/one }])
+
+;; Let's add some data and wait for the transaction
+(d/transact conn [{:name  "Alice", :age   20 }
+                  {:name  "Bob", :age   30 }
+                  {:name  "Charlie", :age   40 }
+                  {:age 15 }])
+
+;; Search the data
+(d/q '[:find ?e ?n ?a
+       :where
+       [?e :name ?n]
+       [?e :age ?a]]
+  @conn)
+;; => #{[3 "Alice" 20] [4 "Bob" 30] [5 "Charlie" 40]}
+
+;; Clean up the database if it is not needed any more
+(d/delete-database config)
+```
 
 ## License
 
-Copyright © 2020 FIXME
+Copyright © 2020 Alexander Oloo
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
