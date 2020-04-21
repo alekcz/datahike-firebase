@@ -26,25 +26,21 @@
         (assoc :db/id (inc r)))))
 
 (deftest test-firebase-store
-  (let [config {:backend :fire 
-                :env :fire
-                :db "alekcz-dev"
-                :root (str "/datahike-firebase" (rand-int 100))}
+  (let [config {:backend :fire  :env :fire :db "alekcz-dev" :root (str "/datahike-firebase" (rand-int 100))}
         _ (d/delete-database config)]
     (is (not (d/database-exists? config)))
     (let [_ (d/create-database config :schema-on-read true)
           conn (d/connect config)
           homes (random-homes 1000)]
       
-
       (d/transact conn (into [] homes))
       
       (let [query (into [] (d/q '[:find ?id :where [_ :num ?id]] @conn))
             query2 (into [] (d/q '[:find ?n  :where [_ :name ?n]] @conn))]
         (is (= (count homes) (count query)))
         (is (= (-> (map :num homes) flatten sort) (-> query flatten sort)))
-        (is (= (-> (map :name homes) flatten distinct sort) (-> query2 flatten distinct sort))))
+        (is (= (-> (map :name homes) flatten distinct sort) (-> query2 flatten distinct sort)))
 
-      (d/release conn)
-      (is (d/database-exists? config))
-      (d/delete-database config))))
+        (d/release conn)
+        (is (d/database-exists? config))
+        (d/delete-database config)))))
