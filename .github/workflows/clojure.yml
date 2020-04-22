@@ -18,6 +18,7 @@ jobs:
     - name: Run tests
       env:
         FIRE: ${{ secrets.FIRE }}
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       run: |
         lein cloverage --codecov
         bash <(curl -s https://codecov.io/bash)
