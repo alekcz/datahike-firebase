@@ -3,7 +3,7 @@
 [Datahike](https://github.com/replikativ/datahike) with [Firebase](https://firebase.google.com/products/realtime-database) as data storage.
 
 ## Status
-![master](https://github.com/alekcz/datahike-firebase/workflows/master/badge.svg)
+![master](https://github.com/alekcz/datahike-firebase/workflows/master/badge.svg) [![codecov](https://codecov.io/gh/alekcz/datahike-firebase/branch/master/graph/badge.svg)](https://codecov.io/gh/alekcz/datahike-firebase)   
 
 _Pre-alpha_
 

@@ -19,4 +19,5 @@ jobs:
       env:
         FIRE: ${{ secrets.FIRE }}
       run: |
-        lein cloverage
+        lein cloverage --codecov
+        bash <(curl -s https://codecov.io/bash)
