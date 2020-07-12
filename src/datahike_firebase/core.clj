@@ -29,8 +29,8 @@
 (s/def :datahike.store.firebase/backend #{:firebase})
 (s/def :datahike.store.firebase/env string?)
 (s/def :datahike.store.firebase/root string?)
-(s/def ::jdbc (s/keys :req-un [:datahike.store.firebase/backend
+(s/def ::firebase (s/keys :req-un [:datahike.store.firebase/backend
                                :datahike.store.firebase/env]
                       :opt-un [:datahike.store.firebase/root]))
 
-(defmethod config-spec :jdbc [_] ::firebase)
+(defmethod config-spec :firebase [_] ::firebase)
