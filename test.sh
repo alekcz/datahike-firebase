@@ -1,2 +1,3 @@
 #!/bin/bash
-DATAHIKE_STORE_BACKEND=firebase DATAHIKE_STORE_CONFIG='{:db "http://localhost:9000" :root "datahike"}' lein cloverage --codecov
+chmod +x ./helper.sh        
+firebase emulators:exec --only database ./helper.sh

@@ -22,5 +22,5 @@ jobs:
         export PATH=~/.npm-global/bin:$PATH
         source ~/.profile
         npm install -g firebase-tools@8.5.0
-        bash ./ci.sh
+        bash ./test.sh
         bash <(curl -s https://codecov.io/bash)
