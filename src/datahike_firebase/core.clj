@@ -20,8 +20,7 @@
 (defmethod default-config :firebase [config]
   (merge
     (map-from-env :datahike-store-config {:env nil 
-                                          :root "datahike"
-                                          :db "datahike"})
+                                          :root "datahike"})
     config))
 
 (defmethod scheme->index :firebase [_]

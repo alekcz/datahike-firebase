@@ -15,9 +15,9 @@ For datahike-firebase you will need to create a Realtime Database on Firebase an
 
 [![Clojars Project](https://img.shields.io/clojars/v/alekcz/datahike-firebase.svg)](https://clojars.org/alekcz/datahike-firebase)
 
-`[alekcz/datahike-firebase "0.1.0"]`
+`[alekcz/datahike-firebase "0.2.0-SNAPSHOT"]`
 
-After including the datahike API and the datahike-firebase namespace, you can use the Firebase backend now using the keyword `:fire`
+After including the datahike API and the datahike-firebase namespace, you can use the Firebase backend now using the keyword `:firebase`
 
 ```clojure
 (ns project.core
@@ -25,11 +25,18 @@ After including the datahike API and the datahike-firebase namespace, you can us
             [datahike-firebase.core]))
 
 ;; Create a config map with firebase as storage medium
-(def config 
-      {:backend :fire  
-       :env "GOOGLE_APPLICATION_CREDENTIALS" ;environment variable with services account details 
-       :db "db-name" 
-       :root "/datahike-firebase"})
+(def config {:store {:backend :firebase
+                     :env "GOOGLE_APPLICATION_CREDENTIALS" ;environment variable with services account details 
+                     :db "https://firebase-db-name.firebaseio.com" ; 
+                     :root "datahike"}
+             :schema-flexibility :read
+             :keep-history? false})
+
+(def config2 {:store {:backend :firebase
+                     :db "http://localhost:9000" ;connect to the local emulator
+                     :root "datahike"}
+             :schema-flexibility :read
+             :keep-history? false})
 
 ;; Create a database at this place, by default configuration we have a strict
 ;; schema and temporal index
@@ -57,7 +64,7 @@ After including the datahike API and the datahike-firebase namespace, you can us
        [?e :name ?n]
        [?e :age ?a]]
   @conn)
-;; => #{[3 "Alice" 20] [4 "Bob" 30] [5 "Charlie" 40]}
+;; #{[4 "Bob" 30] [5 "Charlie" 40] [3 "Alice" 20]}
 
 ;; Clean up the database if it is not needed any more
 (d/delete-database config)
