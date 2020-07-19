@@ -6,7 +6,7 @@
 (deftest core-test
   (let [config {:store {:backend :firebase
                         :db "http://localhost:9000"
-                        :root "datahike"}
+                        :root "datahike-1"}
                 :schema-flexibility :read
                 :keep-history? false}
         _ (d/delete-database config)]
@@ -27,6 +27,30 @@
       (is (not (d/database-exists? config))))))       
 
 (deftest env-test
+  (let [config {:store {:backend :firebase
+                        :env :fire
+                        :db nil
+                        :root "datahike-2"}
+                :schema-flexibility :read
+                :keep-history? false}
+        _ (d/delete-database config)]
+    (is (not (d/database-exists? config)))
+    (let [_ (d/create-database config)
+          conn (d/connect config)]
+
+      (d/transact conn [{ :db/id 1, :name  "Ivan", :age   15}
+                        { :db/id 2, :name  "Petr", :age   37}
+                        { :db/id 3, :name  "Ivan", :age   37}
+                        { :db/id 4, :age 15}])
+      (is (= (d/q '[:find ?e :where [?e :name]] @conn)
+             #{[3] [2] [1]}))
+
+      (d/release conn)
+      (is (d/database-exists? config))
+      (d/delete-database config)
+      (is (not (d/database-exists? config))))))   
+
+(deftest direct-env-test
   (let [_ (d/delete-database)]
     (is (not (d/database-exists?)))
     (let [_ (d/create-database)
