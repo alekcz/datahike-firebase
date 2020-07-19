@@ -16,6 +16,7 @@ jobs:
     - name: Run tests
       env:
         NPM_CONFIG_PREFIX: ~/.npm-global
+        FIRE: ${{ secrets.FIRE }}
       run: |
         mkdir -p ~/.npm-global
         npm config set prefix '~/.npm-global'
