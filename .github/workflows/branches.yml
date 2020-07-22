@@ -1,11 +1,16 @@
-name: master
+name: branches
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - '*'
+      - '!master'
+      
   pull_request:
-    branches: [ master ]
-
+    branches:
+      - '*'
+      - '!master'
+      
 jobs:
   build:
 
@@ -24,4 +29,3 @@ jobs:
         source ~/.profile
         npm install -g firebase-tools@8.5.0
         bash ./test.sh
-        bash <(curl -s https://codecov.io/bash)
