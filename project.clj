@@ -4,9 +4,11 @@
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [ [org.clojure/clojure "1.10.1" :scope "provided"]
+                  [environ "1.2.0"]
+                  [io.replikativ/superv.async "0.2.11"]
                   [alekcz/konserve-fire "0.3.0-alpha1"]
-                  [io.replikativ/datahike "0.3.2-20200918.094908-15" :exclusions [io.replikativ/superv.async]]]
+                  [io.replikativ/datahike "0.3.3"]]
   :aot :all                
   :repl-options {:init-ns datahike-firebase.core}
-  :plugins [[lein-cloverage "1.2.0"]]
-  :profiles { :dev {:dependencies [[metosin/malli "0.0.1-20200404.091302-14"]]}})
+  :plugins [[lein-cloverage "1.2.2"]]
+  :profiles { :dev {:dependencies [[metosin/malli "0.4.0"]]}})
