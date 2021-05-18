@@ -28,7 +28,7 @@
 
 (s/def :datahike.store.firebase/backend #{:firebase})
 (s/def :datahike.store.firebase/env (s/or :keyword keyword? :string string? :nil nil?))
-(s/def :datahike.store.firebase/root string?)
+(s/def :datahike.store.firebase/root (s/or :string string? :nil nil?))
 (s/def :datahike.store.firebase/db (s/or :uri uri? :string string?))
 (s/def ::firebase (s/keys :req-un [:datahike.store.firebase/backend]
                           :opt-un [:datahike.store.firebase/env
