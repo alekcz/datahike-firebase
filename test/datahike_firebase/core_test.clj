@@ -1,7 +1,8 @@
 (ns datahike-firebase.core-test
   (:require [clojure.test :as t :refer [is deftest]]
             [datahike.api :as d]
-            [datahike-firebase.core]))
+            [datahike-firebase.core]
+            [datahike-firebase.graal :as g]))
 
 (deftest core-test
   (let [config {:store {:backend :firebase
@@ -73,3 +74,6 @@
       (is (d/database-exists?))
       (d/delete-database)
       (is (not (d/database-exists?))))))             
+
+(deftest core-test
+  (g/-main))

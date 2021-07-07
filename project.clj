@@ -5,8 +5,10 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [ [org.clojure/clojure "1.10.3" :scope "provided"]
                   [environ "1.2.0"]
-                  [alekcz/konserve-fire "0.4.0-20210707.170137-1"]
-                  [io.replikativ/datahike "0.3.6"]]
+                  [io.replikativ/datahike "0.3.6"
+                    :exclusions  [com.taoensso/timbre org.clojure/clojurescript]]
+                  [alekcz/konserve-fire "0.4.0-20210707.210142-2" :exclusions [io.replikativ/incognito]]
+                  [com.taoensso/timbre "5.1.2"]]
   :aot :all                
   :repl-options {:init-ns datahike-firebase.core}
   :main datahike-firebase.graal
