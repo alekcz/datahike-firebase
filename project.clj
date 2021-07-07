@@ -5,8 +5,8 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [ [org.clojure/clojure "1.10.3" :scope "provided"]
                   [environ "1.2.0"]
-                  [io.replikativ/datahike "0.3.6"
-                    :exclusions  [com.taoensso/timbre org.clojure/clojurescript]]
+                  [io.replikativ/datahike "0.3.7-20210628.084601-10"
+                    :exclusions [org.clojure/clojurescript]]
                   [alekcz/konserve-fire "0.4.0-20210707.210142-2" :exclusions [io.replikativ/incognito]]
                   [com.taoensso/timbre "5.1.2"]]
   :aot :all                
