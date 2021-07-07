@@ -5,7 +5,7 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [ [org.clojure/clojure "1.10.1" :scope "provided"]
                   [environ "1.2.0"]
-                  [alekcz/konserve-fire "0.3.0-alpha3"]
+                  [alekcz/konserve-fire "0.4.0-20210707.170137-1"]
                   [io.replikativ/datahike "0.3.6"]]
   :aot :all                
   :repl-options {:init-ns datahike-firebase.core}
