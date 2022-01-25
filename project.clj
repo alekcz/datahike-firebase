@@ -6,7 +6,7 @@
   :dependencies [ [org.clojure/clojure "1.10.1" :scope "provided"]
                   [environ "1.2.0"]
                   [alekcz/konserve-fire "0.4.0-20210707.170137-1"]
-                  [io.replikativ/datahike "0.3.6"]]
+                  [io.replikativ/datahike "0.4.1480"]]
   :aot :all                
   :repl-options {:init-ns datahike-firebase.core}
   :plugins [[lein-cloverage "1.2.2"]]
