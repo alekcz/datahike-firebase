@@ -5,8 +5,6 @@
 ## Status
 ![master](https://github.com/alekcz/datahike-firebase/workflows/master/badge.svg) [![codecov](https://codecov.io/gh/alekcz/datahike-firebase/branch/master/graph/badge.svg)](https://codecov.io/gh/alekcz/datahike-firebase)   
 
-_Pre-alpha_
-
 ## Prerequisites
 
 For datahike-firebase you will need to create a Realtime Database on Firebase and store the service account credentials in the an environment variable.
@@ -15,7 +13,7 @@ For datahike-firebase you will need to create a Realtime Database on Firebase an
 
 [![Clojars Project](https://img.shields.io/clojars/v/alekcz/datahike-firebase.svg)](https://clojars.org/alekcz/datahike-firebase)
 
-`[alekcz/datahike-firebase "0.2.0-SNAPSHOT"]`
+`[alekcz/datahike-firebase "0.2.0"]`
 
 After including the datahike API and the datahike-firebase namespace, you can use the Firebase backend now using the keyword `:firebase`
 
