@@ -4,7 +4,8 @@
             [hitchhiker.tree.bootstrap.konserve :as kons]
             [konserve-fire.core :as fire]
             [clojure.spec.alpha :as s]
-            [superv.async :refer [<?? S]]))
+            [superv.async :refer [<?? S]])
+  (:gen-class))
 
 (defmethod empty-store :firebase [config]
   (kons/add-hitchhiker-tree-handlers
