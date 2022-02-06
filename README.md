@@ -13,7 +13,7 @@ For datahike-firebase you will need to create a Realtime Database on Firebase an
 
 [![Clojars Project](https://img.shields.io/clojars/v/alekcz/datahike-firebase.svg)](https://clojars.org/alekcz/datahike-firebase)
 
-`[alekcz/datahike-firebase "0.2.0"]`
+`[alekcz/datahike-firebase "0.2.1"]`
 
 After including the datahike API and the datahike-firebase namespace, you can use the Firebase backend now using the keyword `:firebase`
 
