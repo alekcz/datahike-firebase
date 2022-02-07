@@ -1,12 +1,10 @@
-(defproject alekcz/datahike-firebase "0.2.1"
+(defproject alekcz/datahike-firebase "0.2.2"
   :description "Datahike with Firebase as data storage"
   :url "https://github.com/alekcz/datahike-firebase"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [ [org.clojure/clojure "1.10.3"]
-                  [org.clojure/core.cache "1.0.225"]
                   [org.clojure/core.async "1.5.648"]
-                  [org.clojure/core.memoize "1.0.253"]
                   [environ "1.2.0"]
                   [alekcz/konserve-fire "0.4.0"]
                   [io.replikativ/datahike "0.4.1480"]]
