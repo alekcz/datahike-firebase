@@ -11,4 +11,5 @@
   :aot :all     
   :main datahike-firebase.core            
   :repl-options {:init-ns datahike-firebase.core}
+  :javac-options ["--release" "8" "-g"]
   :plugins [[lein-cloverage "1.2.3"]])
