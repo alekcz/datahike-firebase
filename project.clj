@@ -6,9 +6,8 @@
   :dependencies [ [org.clojure/clojure "1.11.1"]
                   [org.clojure/core.async "1.5.648"]
                   [environ "1.2.0"]
-                  [alekcz/konserve-fire "0.4.2-20220902.090518-4"]
+                  [alekcz/konserve-fire "0.4.2-20220902.151312-5"]
                   [io.replikativ/datahike "0.5.1510"]]
-  :aot :all     
   :main datahike-firebase.core            
   :repl-options {:init-ns datahike-firebase.core}
   :javac-options ["--release" "8" "-g"]
