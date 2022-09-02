@@ -6,7 +6,7 @@
   :dependencies [ [org.clojure/clojure "1.11.1"]
                   [org.clojure/core.async "1.5.648"]
                   [environ "1.2.0"]
-                  [alekcz/konserve-fire "0.4.2-20220819.114855-3"]
+                  [alekcz/konserve-fire "0.4.2-20220902.090518-4"]
                   [io.replikativ/datahike "0.5.1510"]]
   :aot :all     
   :main datahike-firebase.core            
